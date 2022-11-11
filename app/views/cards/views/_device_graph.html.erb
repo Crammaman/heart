@@ -1,0 +1,4 @@
+<div data-controller="device-graph" config="<%= @card.config.to_json %>" style="position: relative; width:30vw">
+  <%= @card.name %>
+  <canvas id="device-chart-<%=@card.config['device_id']%>"></canvas>
+</div>

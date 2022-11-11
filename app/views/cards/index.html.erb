@@ -1,0 +1,30 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Cards</h1>
+
+<div id="cards">
+  <% @cards.each do |card| %>
+   <div>
+      <p>
+        <strong>Name:</strong>
+        <%= card.name %>
+      </p>
+
+      <p>
+        <strong>View:</strong>
+        <%= card.view %>
+      </p>
+
+      <p>
+        <strong>Config:</strong>
+        <%= card.config %>
+      </p>
+
+    </div>
+    <p>
+      <%= link_to "Show this card", card %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New card", new_card_path %>

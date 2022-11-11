@@ -1,0 +1,34 @@
+<div data-controller="card-form">
+  <%= form_with(model: card) do |form| %>
+    <% if card.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h2>
+
+        <ul>
+          <% card.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.label :name, style: "display: block" %>
+      <%= form.text_field :name %>
+    </div>
+
+    <%= form.collection_select :view, Card.views, :id, :name %>
+    <div>
+      <%= form.label :view, style: "display: block" %>
+      <%= form.text_field :view %>
+    </div>
+
+    <% if card.view present? %>
+      <%= render "cards/views/#{card.view}" %>
+    <% end %>
+
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>
