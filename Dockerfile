@@ -1,5 +1,7 @@
 FROM ruby:3.1.2
-RUN curl -fsSL https://deb.nodesource.com/setup_current.x | bash -
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		postgresql-client \
@@ -8,6 +10,7 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/* \
     && node --version  \
     && npm --version
+RUN npm install -g yarn
 
 WORKDIR /usr/src/app
 COPY Gemfile* ./
