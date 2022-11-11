@@ -12,7 +12,11 @@ RUN apt-get update \
 WORKDIR /usr/src/app
 COPY Gemfile* ./
 RUN bundle install
-COPY . .
+
+# Add a script to be executed every time the container starts.
+COPY bin/entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
 
 RUN bundle exec rails db:migrate
 

@@ -2,10 +2,9 @@
 lock "~> 3.17.0"
 
 set :application, "heart"
-set :repo_url, "git@example.com:me/my_repo.git"
+set :repo_url, "git@github.com:Crammaman/heart.git"
 
-# Default branch is :master
-# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :branch, :main
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, "/var/www/my_app_name"

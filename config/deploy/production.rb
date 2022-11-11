@@ -2,8 +2,9 @@
 # ======================
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
+config = YAML.load(File.read('config/deploy.yml'))['production']
 
-# server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
+server config['address'], roles: %w{app db web}
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
