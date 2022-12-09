@@ -10,7 +10,7 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app
-COPY Gemfile* ./
+COPY ./ ./
 RUN bundle install
 
 # Add a script to be executed every time the container starts.
