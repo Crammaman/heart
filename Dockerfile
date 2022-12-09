@@ -18,7 +18,5 @@ COPY bin/entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
-RUN bundle exec rails db:migrate
-
 EXPOSE 3000
 CMD ["rails", "server", "-b", "0.0.0.0"]
