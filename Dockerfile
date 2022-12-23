@@ -1,22 +1,24 @@
 FROM ruby:3.1.2
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
+
+ENV PORT 3000
+
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		postgresql-client \
         nodejs \
         build-essential \
-        yarn \
+        git \
 	&& rm -rf /var/lib/apt/lists/*
+RUN npm install -g yarn
 
 WORKDIR /usr/src/app
-COPY ./ ./
-RUN bundle install
 
 # Add a script to be executed every time the container starts.
-COPY bin/entrypoint.sh /usr/bin/
+COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 
 EXPOSE 3000
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD rails server -b 0.0.0.0 -p $PORT
